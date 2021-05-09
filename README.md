@@ -2,7 +2,7 @@
 <p>This is a quiz web app, which is useful for both user and admin in using.</p>
 <p><i>The project is still being worked on done...</i></p>
 
-## For the first version
+## For the only client-side version
 <p>Checkout this: <a href="https://github.com/hieuxuanta/fe-quiz-web-app" target="_blank">fe-quiz-web-app</a></p>
 <p align="center">-------------------------------------</p>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
