@@ -89,7 +89,7 @@ class QuizEventController extends Controller
             'class_id' => $class_code,
             'quiz_event_status' => 0,
         ]);
-
+//TODO: change default quiz event status
         return redirect('/panel');
     }
 

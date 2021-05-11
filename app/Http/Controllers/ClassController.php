@@ -26,7 +26,7 @@ class ClassController extends Controller
         $course_sec = $request->input('course_sec');
         $sub_id = $request->input('sub_id');
         $class_id = $request->input('class_id');
-
+//TODO: what if class_id is duplicate ???
         Classe::create([
             'class_id' => $class_id,
             'instructor_id' => $i_id,

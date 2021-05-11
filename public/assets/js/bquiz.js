@@ -19,6 +19,3 @@ function enableQuiz() {
     $('.nav-item a[href="#q1"]').tab('show');
 }
 
-function theFinalCountdown(){
-    
-}
