@@ -59,7 +59,7 @@
                                         <h1 class="align-left display-4" >{{ $classes->count() }}</h1>
                                         <p class="lead align-left">Classes</p>
                                     </div>
-                                    <a class="card-footer text-white clearfix small z-1 align-left" href="">View subjects</a>
+                                    {{-- <a class="card-footer text-white clearfix small z-1 align-left" href="">View classes</a> --}}
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-12 pb-3">
@@ -68,7 +68,7 @@
                                         <h1 class="align-left display-4" >{{ $subjects->count() }}</h1>
                                         <p class="lead align-left">Subjects</p>
                                     </div>
-                                    <a class="card-footer text-white clearfix small z-1 align-left" href="">View subjects</a>
+                                    <a class="card-footer text-white clearfix small z-1 align-left" href="/subjects">View subjects</a>
                                 </div>
                             </div>
                         </div>

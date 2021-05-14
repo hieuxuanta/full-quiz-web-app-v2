@@ -15,7 +15,7 @@ class CreateUserProfilesTable extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->integer('usr_id')->unsigned();
-            $table->bigInteger('usr_identification_numb'); //TODO: only student get identification number???
+            $table->bigInteger('usr_identification_numb'); // only student get identification number, if teacher -> no assign or set to 0 ???
             $table->string('full_name'); // family_name
             $table->string('ext_name')->nullable();
             $table->timestamps();

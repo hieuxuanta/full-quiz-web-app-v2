@@ -16,7 +16,7 @@ class ClassSeeder extends Seeder
     {
         DB::table('classes')->insert([[
             'class_id' => "3KMMR",
-            'course_sec' => "IT3A",
+            'course_sec' => "ITFIELD 113",
             'instructor_id' => 2,
             'subject_id' => 1,
             'class_active' => true

@@ -23,5 +23,15 @@ class QuizEventSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]]);
+
+        DB::table('quiz_events')->insert([[
+            'quiz_event_id' => 2,
+            'quiz_event_name' => 'Angular Basics',
+            'questionnaire_id' => 2,
+            'quiz_event_status' => 1,//pending quiz
+            'class_id' => "3KMMR",
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+        ]]);
     }
 }

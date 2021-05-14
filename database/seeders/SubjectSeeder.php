@@ -16,7 +16,7 @@ class SubjectSeeder extends Seeder
     {
         DB::table('subjects')->insert([[
             'subject_id' => 1,
-            'subject_code' => 'CSIT 131',
+            'subject_code' => 'ITFIELD 113',
             'subject_desc' => 'Web Development'
         ]]);
     }

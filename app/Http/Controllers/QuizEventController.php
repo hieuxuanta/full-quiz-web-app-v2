@@ -22,7 +22,8 @@ class QuizEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create()
+    {
         $classes = Classe::all();
         return view('create.quiz-event', compact('classes'));
     }
@@ -33,7 +34,8 @@ class QuizEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $quiz_name = $request->input('q_name');
         $class_code = $request->input('class_id');
 
@@ -53,25 +55,26 @@ class QuizEventController extends Controller
 
         $q_id = Questionnaire::count(); //Questionnaire id.
 
-        for($x = 0; $x < count($questions); $x++){
+        for ($x = 0; $x < count($questions); $x++) {
             $question = $questions[$x];
             $choices = ""; //For multiple choice use.
             $answer = null; //Obviously.
             $points = $p[$x];
 
-            if($types[$x] == 0){
+            if ($types[$x] == 0) {
                 //ERROR
-            }else if ($types[$x] == 1){//Identification
+            } else if ($types[$x] == 1) { //Identification
                 $answer = $i[$x];
-            }else if($types[$x] == 2){//Multiple choice
+            } else if ($types[$x] == 2) { //Multiple choice
                 $choices = $mc[$x][0] . ";" . $mc[$x][1] . ";" . $mc[$x][2] . ";" . $mc[$x][3];
                 $answer = $c_mc[$x];
-            }else if($types[$x] == 3){//True or False
+            } else if ($types[$x] == 3) { //True or False
                 $answer = $tf[$x];
             }
 
-            if(trim($question) == "" || is_null($question))
+            if (trim($question) == "" || is_null($question)) {
                 continue;
+            }
 
             Question::create([
                 'questionnaire_id' => $q_id,
@@ -79,7 +82,7 @@ class QuizEventController extends Controller
                 'question_type' => $types[$x],
                 'choices' => $choices,
                 'answer' => $answer,
-                'points' => $points
+                'points' => $points,
             ]);
         }
 
@@ -89,7 +92,7 @@ class QuizEventController extends Controller
             'class_id' => $class_code,
             'quiz_event_status' => 0,
         ]);
-//TODO: change default quiz event status
+// don't change new quiz event status so as to make a clear view
         return redirect('/panel');
     }
 
@@ -99,33 +102,34 @@ class QuizEventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-        if(Auth::user()->permissions < 2){
+    public function show($id)
+    {
+        if (Auth::user()->permissions < 2) {
             $usr_id = Auth::user()->usr_id;
 
             $quiz_details = QuizEvent::with([
-                        'classe',
-                        'classe.subject',
-                        'questionnaire'])
-                        ->where('quiz_event_id', $id)
-                        ->first();
+                'classe',
+                'classe.subject',
+                'questionnaire'])
+                ->where('quiz_event_id', $id)
+                ->first();
 
             $results = QuizEvent::with([
-                    'classe.student_class.student_score' => function ($q) use($id){
-                        $q->where('quiz_event_id', $id);
-                    },
-                    'classe.student_class.user_profile'])
-                    ->where('quiz_event_id', $id)
-                    ->first();
+                'classe.student_class.student_score' => function ($q) use ($id) {
+                    $q->where('quiz_event_id', $id);
+                },
+                'classe.student_class.user_profile'])
+                ->where('quiz_event_id', $id)
+                ->first();
 
             $qtn_id = QuizEvent::find($id)->questionnaire_id;
             $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
 
             return view('manage.quiz', compact('quiz_details', 'results', 'sum'));
-        }else{
+        } else {
             $results = QuizStudentScore::with('quiz_event', 'user_profile')
-                        ->where('student_id', Auth::user()->usr_id)
-                        ->first();
+                ->where('student_id', Auth::user()->usr_id)
+                ->first();
 
             $qtn_id = QuizEvent::find($id)->questionnaire_id;
             $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
@@ -142,7 +146,8 @@ class QuizEventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $quiz = QuizEvent::find($id);
         $quiz->quiz_event_status = $request->input('quiz_status');
         $quiz->save();

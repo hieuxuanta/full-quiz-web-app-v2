@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\QuizEvent;
 use App\Models\QuizStudentAnswer;
 use App\Models\QuizStudentScore;
@@ -55,6 +56,7 @@ class TakeQuizController extends Controller
             ->get();
 
         $score = 0;
+        $rank = '';
 
         foreach ($answers as $answer) {
             if ($answer->student_answer != "" || $answer->student_answer != null) {
@@ -62,14 +64,27 @@ class TakeQuizController extends Controller
                     $score += $answer->question->points;
                 }
             } else {
-                $score;
+                $score += 0;
             }
+        }
+
+        $qtn_id = QuizEvent::find($quiz_event_id)->questionnaire_id;
+        $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
+        if($score / $sum >= (80 / 100)){
+            $rank = "A";
+        } elseif($score / $sum >= (60 / 100)){
+            $rank = "B";
+        } elseif($score / $sum >= (40 / 100)) {
+            $rank = "C";
+        } else {
+            $rank = "D";
         }
 
         QuizStudentScore::create([
             'student_id' => $student_id,
             'quiz_event_id' => $quiz_event_id,
             'score' => $score,
+            'rank' => $rank,
             'recorded_on' => \Carbon\Carbon::now(),
         ]);
 

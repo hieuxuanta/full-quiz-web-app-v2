@@ -16,6 +16,7 @@ class QuizStudentScore extends Model
 
     protected $fillable = [
         'score',
+        'rank',
         'student_id',
         'quiz_event_id',
         'recorded_on'

@@ -18,39 +18,83 @@
 </head>
 
 <body>
+    {{-- report score by level A, B, C --}}
     <div class="container">
-        <h1 class="text-center">Quiz Report</h1>
-        <h5 class="text-center">for {{ $results->quiz_event->quiz_event_name }}</h5>
-        <hr>
-        <p>
-            Student name:
-            <b>
-                {{ $results->user_profile->ext_name }}.&nbsp;
-                {{ $results->user_profile->full_name }}
-                {{-- {{ $results->user_profile->given_name }}
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Quiz Report</h1>
+                <h5 class="text-center">for {{ $results->quiz_event->quiz_event_name }}</h5>
+                <hr>
+            </div>
+        </div>
 
-                {{$results->user_profile->middle_name }} --}}
-            </b>
-        </p>
-        <p>
-            Student identification number:
-            <b>
-                {{ $results->user_profile->usr_identification_numb }}
-            </b>
-        </p>
-        <br>
-        <p>
-            The above mentioned student got a rating of
-            <b>
-            @php
-                $ave = $results->score / $sum;
-                echo (number_format($ave, 2) * 100) . "%";
-            @endphp
-            </b> ({{ $results->score }}/{{$sum}} pts.).
-        </p>
-        <p>
-            This is a computer generated report.
-        </p>
-        <a href="/panel">Go back to home</a>
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    Student name:
+                    <b>
+                        {{ $results->user_profile->ext_name }}.&nbsp;
+                        {{ $results->user_profile->full_name }}
+                        {{-- {{ $results->user_profile->given_name }}
+
+                        {{$results->user_profile->middle_name }} --}}
+                    </b>
+                </p>
+                <p>
+                    Student identification number:
+                    <b>
+                        {{ $results->user_profile->usr_identification_numb }}
+                    </b>
+                </p>
+                <br>
+                <p>
+                    The above mentioned student got a rating of
+                    <b>
+                        @php
+                            $ave = $results->score / $sum;
+                            echo number_format($ave, 2) * 100 . '%';
+                        @endphp
+                    </b> ({{ $results->score }}/{{ $sum }} pts).
+                </p>
+                <p>
+                    <b>RANK:
+                        {{ $results->rank }}
+                        @if ($results->rank == 'A' || $results->rank == 'B')
+                            (Pass)
+                        @else
+                            (Fail)
+                        @endif
+                    </b>
+                </p>
+                <p>
+                    This is a computer generated report.
+                </p>
+                <a href="/panel">Go back to home</a>
+
+            </div>
+            <br>
+            <div class="col-md-4">
+                @switch($results->rank)
+                    @case("A")
+                        <img src="/assets/img/grade-A.jpg" alt="grade-A" style="width:230px">
+                    @break
+
+                    @case("B")
+                    <img src="/assets/img/grade-B.jpg" alt="grade-B" style="width:230px">
+                    @break
+
+                    @case("C")
+                    <img src="/assets/img/grade-C.jpg" alt="grade-C" style="width:230px">
+                    @break
+
+                    @default
+                    <img src="/assets/img/grade-D.jpg" alt="grade-D" style="width:230px">
+                @endswitch
+
+            </div>
+        </div>
+
+
     </div>
+    {{-- TODO: then after all, print quiz result as pdf file --}}
 </body>

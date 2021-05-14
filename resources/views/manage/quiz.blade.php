@@ -62,9 +62,12 @@
                         <th>Iden. Number</th>
                         <th>Score</th>
                         <th>Rating</th>
+                        <th>Rank</th>
+                        <th>Pass</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach($results->classe->student_class as $result)
                     <tr>
                         <td>
@@ -96,6 +99,14 @@
 
                             echo (number_format($ave, 2) * 100) . "%";
                         @endphp
+                        </td>
+                        <td>
+                            {{$result->student_score->rank}}
+                        </td>
+                        <td>
+                            @if ($result->student_score->rank == 'A' || $result->student_score->rank == 'B')
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

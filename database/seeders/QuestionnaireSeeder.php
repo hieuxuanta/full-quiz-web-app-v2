@@ -17,5 +17,8 @@ class QuestionnaireSeeder extends Seeder
         Questionnaire::create([
             'questionnaire_name' => 'HTML Basics'
         ]);
+        Questionnaire::create([
+            'questionnaire_name' => 'Angular Basics'
+        ]);
     }
 }

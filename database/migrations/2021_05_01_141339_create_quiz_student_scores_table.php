@@ -15,6 +15,7 @@ class CreateQuizStudentScoresTable extends Migration
     {
         Schema::create('quiz_student_scores', function (Blueprint $table) {
             $table->integer('score');
+            $table->string('rank');
             $table->integer('student_id')->unsigned();
             $table->integer('quiz_event_id')->unsigned();
             $table->timestamp('recorded_on');

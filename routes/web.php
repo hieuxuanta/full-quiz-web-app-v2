@@ -19,7 +19,7 @@ Auth::routes(); //Authentication routes, predefined by Laravel
 
 Route::get('/', [QuizController::class, 'Home']); //Returns the home page
 
-//TODO: about us page
+//TODO: about us, home, contact page
 
 Route::get('/panel', [QuizController::class, 'RedirectToAppropriatePanel']); //Redirect to appropriate panel
 

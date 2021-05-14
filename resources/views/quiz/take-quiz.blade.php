@@ -90,7 +90,7 @@
                             </button>
 
                         </div>
-
+                        {{-- TODO: redesign layout like frontend-only version --}}
                         @foreach ($quiz_content as $qc)
                             <div class="tab-pane fade" id="q{{ $questionNum }}" role="tabpanel"
                                 aria-labelledby="q{{ $questionNum }}">
@@ -168,7 +168,8 @@
                                             data-target="#submitModal">Submit</button>
                                         {{-- Submit modal --}}
                                         <div class="modal fade" id="submitModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -183,8 +184,10 @@
                                                         You still have time, are you sure to end the quiz now?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" id="okSubmitBtn" class="btn btn-primary">OK</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" id="okSubmitBtn"
+                                                            class="btn btn-primary">OK</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,8 +201,6 @@
                     </form>
 
 
-
-                    {{-- TODO: check script error gen questions ??? --}}
                     <script>
                         // Selectors
                         const bqTimerContainer = document.querySelector('#bq_timer_container');
@@ -208,8 +209,8 @@
                         let okSubmitBtn = document.querySelector('#okSubmitBtn');
 
                         let quiz_count = @php echo(count($quiz_content)) @endphp;
-                        //TODO: rechange 0.05 when done popup
-                        let time_per_ques = 0.2; //minutes
+                        //TODO: rechange into 2 minutes when done popup
+                        let time_per_ques = 0.05; //minutes
                         let total_time = quiz_count * time_per_ques;
                         let total_time_in_second = total_time * 60;
 
@@ -234,7 +235,8 @@
                                 if (total_time_in_second == 0) {
                                     clearInterval(handleCountdown);
                                     @php $questionNum = count($quiz_content) @endphp;
-                                    //TODO: can not set autoclick show modal, so temporarily do the alert instead
+                                    //TODO: can not set autoclick show modal when > 2 questions, so temporarily do the alert instead
+                                    //TODO: BUG ~ sometimes score true, sometimes score start like true answer those tho none answers ??
                                     alert("Time is over! Your result will be shown in a minute...");
                                     okSubmitBtn.click();
 
