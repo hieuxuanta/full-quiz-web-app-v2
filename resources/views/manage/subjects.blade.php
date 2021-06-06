@@ -18,7 +18,7 @@
                         <th>Subject Code</th>
                         <th>Description</th>
                         <th>Classes</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,9 +34,11 @@
                                 data-subid="{{ $s->subject_id }}"
                                 data-code="{{ $s->subject_code }}"
                                 data-dscr="{{ $s->subject_desc }}">
-                                Edit
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-danger btn-sm" data-subid="{{ $s->subject_id }}" data-toggle="modal" data-target="#deleteSubject" {{ $s->classe->count() > 0 ? 'disabled' : '' }}>Delete</button>
+                            <button class="btn btn-danger btn-sm" data-subid="{{ $s->subject_id }}" data-toggle="modal" data-target="#deleteSubject" {{ $s->classe->count() > 0 ? 'disabled' : '' }}>
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
 
@@ -45,7 +47,9 @@
             </table>
         </div>
         <div class="col-3">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSubject">Add new subject</button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSubject">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add new subject
+            </button>
         </div>
     </div>
 </div>

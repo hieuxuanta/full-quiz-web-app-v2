@@ -43,7 +43,7 @@
                             <div class="col-lg-6 col-sm-12 pb-3">
                                 <div class="card text-white bg-primary">
                                     <div class="card-body">
-                                        <h1 class="align-left display-1">{{ $quiz_class->class_id }}</h1>
+                                        <p class="align-left display-3">{{ $quiz_class->class_id }}</p>
                                         <p class="lead align-left">Class Code</p>
                                     </div>
                                 </div>
@@ -51,26 +51,25 @@
                             <div class="col-lg-3 col-sm-12 pb-3">
                                 <div class="card text-white bg-info">
                                     <div class="card-body">
-                                        <p class="align-left display-1">{{ $quiz_events->count() }}</p>
+                                        <p class="align-left display-3">{{ $quiz_events->count() }}</p>
                                         <p class="lead align-left">
                                             Quiz{{ $quiz_events->count() <= 1 ? '' : 'zes' }}
                                         </p>
                                     </div>
-                                    {{-- TODO: view quizzes of class --}}
-                                    <a class="card-footer text-white clearfix small z-1 text-center" href="">View quiz</a>
+                                    {{-- TODO: view quizzes of class - DONE but check again --}}
+                                    {{-- <a class="card-footer text-white clearfix small z-1 text-center" href="">View quiz</a> --}}
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-12 pb-3">
                                 <div class="card text-white bg-success">
                                     <div class="card-body">
-                                        <p class="align-left display-1">{{ $students->count() }}</p>
+                                        <p class="align-left display-3">{{ $students->count() }}</p>
                                         <p class="lead align-left">
                                             Student{{ $quiz_events->count() < 1 ? '' : 's' }}
                                         </p>
                                     </div>
-                                    {{-- TODO: view student list of class --}}
-                                    <a class="card-footer text-white clearfix small z-1 text-center" href="">View student
-                                        list</a>
+                                    {{-- TODO: view student list of class - DONE but check again --}}
+                                    {{-- <a class="card-footer text-white clearfix small z-1 text-center" href="">View student list</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -82,7 +81,6 @@
                                 <tr>
                                     <th>Topic</th>
                                     <th>Subject</th>
-                                    <th>Class</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
@@ -113,6 +111,7 @@
                             <thead class="thead">
                                 <tr>
                                     <th>Name</th>
+                                    <th>Student Identification Number</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -127,12 +126,15 @@
                                     {{ $s->middle_name }} --}}
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            {{ $s->usr_identification_numb }}
+                                        </td>
+                                        <td>
+                                            {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                                 data-target="#StudentProfileModal" data-usrid="{{ $s->usr_id }}"
                                                 data-fname="{{ $s->full_name }}" data-nename="{{ $s->ext_name }}">
                                                 Edit
                                             </button>
-                                            <button class="btn btn-primary btn-sm btn-danger" href="#">Delete</button>
+                                            <button class="btn btn-primary btn-sm btn-danger" href="#">Delete</button> --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -148,12 +150,17 @@
                         <h4>Advanced Settings</h4>
                         <div class="card" style="width: 40rem;">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteClass"
-                                        style="float: right">Delete this class</button>
-                                    <strong>Delete this class</strong>
-                                    <p>Once you delete this class, all quiz events that refers to this class will also be
-                                        deleted.</p>
+                                <li class="list-group-item d-md-flex">
+                                    <div class="pr-md-3">
+                                        <strong>Delete this class</strong>
+                                        <p>Once you delete this class, all quiz events that refers to this class will also
+                                            be deleted.</p>
+                                    </div>
+                                    <div class="my-md-auto" style="margin-left: auto">
+                                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteClass">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete class
+                                        </button>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -207,6 +214,7 @@
         </div>
     </div>
 
+    {{-- TODO: Profile function is not working --}}
     <!-- Student Profile Modal -->
     <div class="modal fade" id="StudentProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

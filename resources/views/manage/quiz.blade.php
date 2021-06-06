@@ -53,7 +53,9 @@
             <button href="" onclick="javascript:ChangeQuizStatus({{ $quiz_details->quiz_event_id }}, 2)" class="btn btn-primary btn-danger">End Quiz</button>
             @endif
         </div>
+        {{-- TODO: Sort by Rank, Rating --}}
         <div class="col-lg-9 pt-4">
+
             <h3>Quiz Results</h3>
             <table class="table table-hover">
                 <thead>
@@ -101,12 +103,22 @@
                         @endphp
                         </td>
                         <td>
-                            {{$result->student_score->rank}}
+                            @if(is_null($result->student_score))
+                                <i>no rating yet</i>
+                            @else
+                                {{$result->student_score->rank}}
+                            @endif
+
                         </td>
                         <td>
-                            @if ($result->student_score->rank == 'A' || $result->student_score->rank == 'B')
+                            @if(is_null($result->student_score))
+                                {{-- <i>&nbsp;</i> --}}
+                            @else
+                                @if ($result->student_score->rank == 'A' || $result->student_score->rank == 'B')
                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                @endif
                             @endif
+
                         </td>
                     </tr>
                     @endforeach

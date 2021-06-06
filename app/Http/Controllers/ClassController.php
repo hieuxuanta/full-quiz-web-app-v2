@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classe;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,13 +27,14 @@ class ClassController extends Controller
         $course_sec = $request->input('course_sec');
         $sub_id = $request->input('sub_id');
         $class_id = $request->input('class_id');
+
 //TODO: what if class_id is duplicate ???
         Classe::create([
             'class_id' => $class_id,
             'instructor_id' => $i_id,
             'course_sec' => $course_sec,
             'subject_id' => $sub_id,
-            'class_active' => 1
+            'class_active' => true
         ]);
 
         return redirect('/panel');

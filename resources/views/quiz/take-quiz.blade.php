@@ -80,10 +80,11 @@
                                 </b>
                             </p>
                             <p>Course and Section: <b>{{ $quiz->classe->course_sec }}</b></p>
-                            <button type="button" id="enablequizbtn" class="btn btn-primary">Yes,
+                            <button type="button" id="enablequizbtn" class="btn btn-primary" onclick="enableQuiz()">Yes,
                                 this is correct</button>
-                            <button type="button" id="disablequizbtn" class="btn btn-outline-primary"><a
-                                    href="/panel">No, turn back!</a></button>
+                            <a href="/panel" id="disablequizbtn" class="btn btn-dark">
+                                No, turn back!
+                            </a>
                             <button type="button" class="btn btn-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
@@ -115,22 +116,68 @@
                                         $choices = explode(';', $qc->choices);
                                         $choicenum = 1;
                                     @endphp
-                                    <div class="form-group">
-                                        <h5>Choices</h5>
-                                        <div class="form-inline container">
-                                            @foreach ($choices as $choice)
-                                                <div class="form-check">
-                                                    <label for="mc_c{{ $choicenum }}" class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="answer[{{ $questionNum }}]"
-                                                            id="mc_c{{ $choicenum }}" value="{{ $choicenum++ }}">
-                                                        {{ $choice }}
-                                                    </label>
-                                                </div>
-                                                &nbsp; &nbsp;
-                                            @endforeach
+                                    @foreach ($choices as $choice)
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label for="mc_c{{ $choicenum }}" class="form-check-label">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="answer[{{ $questionNum }}]"
+                                                        id="mc_c{{ $choicenum }}" value="{{ $choicenum++ }}">
+                                                    {{ $choice }}
+                                                </label>
+                                            </div>
                                         </div>
+                                    @endforeach
+                                    {{-- <div class="bz-container">
+                                        <h1>Online Quiz App</h1>
+                                        <form name="OnlineQuiz" id="onlineQuizFormId">
+                                            <div class="questionBlockClass">
+                                                <!-- test-layout -->
+                                                <div class="container_1" id="question_1">
+                                                    <label for="${indexQues - 1}" class="question">
+                                                        Question <label class="currentQues_lbl">1</label>: Javascript is
+                                                        _________ language.
+                                                    </label><br>
+                                                    <div class="answer">
+                                                        <label class="lbl-wrapper">
+                                                            <input name="${i}" type="radio" value="a">
+                                                            <div class="lblA">${myQuestions[i].answers.a}</div>
+                                                        </label>
+                                                        <label class="lbl-wrapper">
+                                                            <input name="${i}" type="radio" value="b">
+                                                            <div class="lblB">${myQuestions[i].answers.b}</div>
+                                                        </label>
+                                                        <label class="lbl-wrapper">
+                                                            <input name="${i}" type="radio" value="c">
+                                                            <div class="lblC">${myQuestions[i].answers.c}</div>
+                                                        </label>
+                                                        <label class="lbl-wrapper">
+                                                            <input name="${i}" type="radio" value="d">
+                                                            <div class="lblD">${myQuestions[i].answers.d}</div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- end-test-layout -->
+                                            </div>
+                                            <div class="buttonBlockClass">
+                                                <!-- <button id="previousBtn" class="display_none">Previous Question</button> -->
+                                                <button id="previousBtn" class="display_none">
+                                                    <i class="fas fa-caret-left"></i>
+                                                </button>
+                                                <!-- <button id="nextBtn">Next Question</button> -->
+                                                <button id="nextBtn">
+                                                    <i class="fas fa-caret-right"></i>
+                                                </button>
+                                                <br>
+                                                <button id="submitBtn" class="display_none">Submit Quiz</button>
+                                                <button id="playAgainBtn" class="display_none">Play again</button>
+                                                <br>
+                                            </div>
+                                        </form>
                                     </div>
+
+                                    <img class="bg-absolute" src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/11/css-gradient.png?fit=1200%2C600&ssl=1" alt=""
+                                        title="Go do quiz app boiz :)"> --}}
 
                                 @elseif($qc->question_type == 3)
                                     <h1>Question #{{ $questionNum }}</h1><span class="badge badge-info">True or
@@ -145,6 +192,10 @@
                                                 True
                                             </label>
                                         </div>
+
+                                    </div>
+                                    <div class="form-group">
+
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="radio"
@@ -197,7 +248,7 @@
                             </div>
                         @endforeach
 
-                        <input type="hidden" name="quiz_event_id" value="{{ $quiz->quiz_event_id }}">
+                        <input type="hidden" name="quiz_event_id" id="qid" value="{{ $quiz->quiz_event_id }}">
                     </form>
 
 
@@ -207,6 +258,7 @@
                         let enableQuizBtn = document.querySelector('#enablequizbtn');
                         let submitBtn = document.querySelector('#submitBtn');
                         let okSubmitBtn = document.querySelector('#okSubmitBtn');
+                        let quizEventId = document.querySelector('#qid');
 
                         let quiz_count = @php echo(count($quiz_content)) @endphp;
                         //TODO: rechange into 2 minutes when done popup
@@ -215,6 +267,22 @@
                         let total_time_in_second = total_time * 60;
 
                         enableQuizBtn.addEventListener('click', function() {
+                            localStorage.setItem('bid', quizEventId.value);
+                            //define a function to set cookies
+                            function setCookie(name, value, days) {
+                                var expires = "";
+                                if (days) {
+                                    var date = new Date();
+                                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                    expires = "; expires=" + date.toUTCString();
+                                }
+                                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+                            }
+
+                            //get your item from the localStorage
+                            var bid = localStorage.getItem('bid');
+                            setCookie('cookieSaveId', bid, 7);
+
                             // Update question pane
                             $(".disabled").removeClass("disabled");
                             $("#v-pills-welcome-tab").addClass("disabled");
@@ -244,6 +312,8 @@
                                 }
                             }, 1000);
                         });
+
+                        //
 
                     </script>
                 </main>

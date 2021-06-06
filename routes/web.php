@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizEventController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,11 @@ Auth::routes(); //Authentication routes, predefined by Laravel
 Route::get('/', [QuizController::class, 'Home']); //Returns the home page
 
 //TODO: about us, home, contact page
+// TODO: Show user info
 
 Route::get('/panel', [QuizController::class, 'RedirectToAppropriatePanel']); //Redirect to appropriate panel
+
+Route::get('download-result', [QuizEventController::class, 'createPDF']);
 
 Route::resource('quiz', 'QuizEventController', ['only' => [//Quiz Events
     'create', 'store', 'show', 'update'

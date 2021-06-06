@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="questions" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="tab-pane fade show active mb-md-5" id="questions" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <h5>Questions</h5>
                     <table class="table table-hover">
                         <thead>
@@ -47,38 +47,41 @@
                                         @if($qe->question_type == 1)
                                             <button class="btn btn-primary btn-sm" data-qid="{{ $qe->question_id }}" data-question="{{ $qe->question_name }}" data-question-type="{{ $qe->question_type }}"
                                                 data-correct-ans="{{ $qe->answer }}" data-points="{{ $qe->points }}" data-toggle="modal"
-                                                data-target="#editQuestion">Edit
+                                                data-target="#editQuestion"><i class="fa fa-pencil" aria-hidden="true"></i>
                                             </button>
                                         @elseif($qe->question_type == 2)
                                             <button class="btn btn-primary btn-sm" data-qid="{{ $qe->question_id }}" data-question="{{ $qe->question_name }}" data-question-type="{{ $qe->question_type }}"
                                                 data-choices="{{ $qe->choices }}" data-correct-ans="{{ $qe->answer }}" data-points="{{ $qe->points }}"
-                                                data-toggle="modal" data-target="#editQuestion">Edit
+                                                data-toggle="modal" data-target="#editQuestion"><i class="fa fa-pencil" aria-hidden="true"></i>
                                             </button>
                                         @elseif($qe->question_type == 3)
                                             <button class="btn btn-primary btn-sm" data-qid="{{ $qe->question_id }}" data-question="{{ $qe->question_name }}" data-question-type="{{ $qe->question_type }}"
                                                 data-correct-ans="{{ $qe->answer }}" data-points="{{ $qe->points }}" data-toggle="modal"
-                                                data-target="#editQuestion">Edit
+                                                data-target="#editQuestion"><i class="fa fa-pencil" aria-hidden="true"></i>
                                             </button>
                                         @endif
-                                        <button class="btn btn-primary btn-sm btn-danger" data-qid="{{ $qe->question_id }}" data-toggle="modal" data-target="#deleteQuestion">Delete
+                                        <button class="btn btn-primary btn-sm btn-danger" data-qid="{{ $qe->question_id }}" data-toggle="modal" data-target="#deleteQuestion">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createQuestion">Add new question</button>
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createQuestion">
+                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add new question
+                    </button>
                 </div>
                 <div class="tab-pane fade " id="basic-info" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, inventore.
+                    Have a good day on Bquiz !!!
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
                 <a class="nav-link active" id="questions-tab" data-toggle="pill" href="#questions" role="tab" aria-controls="v-pills-profile" aria-expanded="true">Questions</a>
-                {{--  <a class="nav-link" id="basic-info-tab" data-toggle="pill" href="#basic-info" role="tab" aria-controls="v-pills-home"
-                    aria-expanded="true">Basic Information</a>  --}}
+                <!--  <a class="nav-link" id="basic-info-tab" data-toggle="pill" href="#basic-info" role="tab" aria-controls="v-pills-home"
+                    aria-expanded="true">Basic Information</a>  -->
             </div>
         </div>
 

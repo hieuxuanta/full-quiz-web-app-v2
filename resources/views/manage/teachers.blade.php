@@ -17,7 +17,7 @@
                         <th>Teacher's Name</th>
                         <th>Username</th>
                         <th>Classes</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,11 +36,11 @@
                         <td>
                             <button href="" class="btn btn-danger btn-sm" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteTeacher"
                                 data-tid="{{ $t->usr_id }}">
-                                Delete
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                             <button href="" class="btn btn-warning btn-sm" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#resetTeacherPassword"
                                 data-tid="{{ $t->usr_id }}">
-                                Reset Password
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
                             </button>
                         </td>
                     </tr>
@@ -49,7 +49,9 @@
             </table>
         </div>
         <div class="col-3">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSubject">Add new teacher</button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSubject">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add new teacher
+            </button>
         </div>
 
     </div>
@@ -87,7 +89,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" onclick="" class="btn btn-success btn-block">Register</button>
-                            <small class="form-text text-muted text-center">By clicking "Register", the teacher agree to our terms of service and privacy policy.</small>
+                            <small class="form-text text-muted text-center">By clicking "Register", the teacher agrees to our terms of service and privacy policy.</small>
                         </div>
                         <input type="hidden" name="permission" id="permission" value="1">
                     </form>

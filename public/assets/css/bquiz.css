@@ -40,3 +40,142 @@ body {
 .sidebar .nav-link {
   border-radius: 0;
 }
+.display_none {
+    display: none;
+}
+
+/* Take-quiz */
+
+
+/* body{
+    background: url(../images/bg-forest.jpg) no-repeat;
+    background-size: cover;
+    background-color: #ccc;
+    font-family: KodchasanRegular;
+    font-size: 20px;
+    z-index: -1;
+} */
+
+/* input, textarea, button{
+    font-family: KodchasanRegular;
+    font-size: 20px;
+} */
+
+/* #onlineQuizFormId{
+    position: relative;
+}
+
+.bz-container {
+    position: relative;
+    margin-top:30px;
+    text-align: -webkit-center;
+    z-index: 10;
+}
+
+img.bg-absolute{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+
+    filter: brightness(0.8);
+}
+
+.bz-container h1{
+    margin: 0 0 20px;
+}
+
+.bz-container .questionBlockClass {
+    background: url('../images/bg-light.jpg');
+    background: url('https://image.freepik.com/free-vector/abstract-blue-bokeh-background-light-effect_29865-297.jpg');
+    background-size: cover;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    width: 850px;
+    min-height: 400px;
+    text-align: left;
+    padding: 25px;
+
+    box-shadow: 0 0 95px 15px #ccc;
+}
+
+.bz-container .buttonBlockClass{
+    border: solid 3px rgb(236,239,246);
+    background-color: rgba(236,239,246,0.2);
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 850px;
+    margin: -10px 0 30px;
+    padding: 20px;
+}
+
+.answer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lbl-wrapper{
+    display: inline-block;
+    width: 48.75%;
+}
+
+.lblA, .lblB, .lblC, .lblD{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    margin:20px 0 0;
+    background-color: #45C3F5;
+    transition: background-color ease-in-out 0.2s;
+}
+.lblA:hover, .lblB:hover, .lblC:hover, .lblD:hover{
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+lbl-wrapper>input[value]{
+    display: none;
+}
+
+lbl-wrapper>input[value]:checked + .lblA, input[value]:checked + .lblB, input[value]:checked + .lblC, input[value]:checked + .lblD{
+    background-color: #FFB047;
+}
+
+#previousBtn, #nextBtn{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+#submitBtn{
+    outline: none;
+    border: none;
+    background-color: #47FF6C;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 0 10px;
+
+}
+
+#submitBtn:hover{
+    background-color: #1aff47;
+}
+button:hover{
+    cursor: pointer;
+}
+.fas{
+    font-size: 5rem;
+    color: #47FF6C;
+    margin:0 10px 0;
+}
+.fas:hover{
+    color: brown;
+}
+
+label#score{
+    font-size: 1.5rem;
+}
+
+.display_none {
+    display: none;
+} */

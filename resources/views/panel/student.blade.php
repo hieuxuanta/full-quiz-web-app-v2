@@ -29,8 +29,9 @@
             <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
                 <div class="tab-content col" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="quiz-events">
-                        <h3>Pending Quizzes</h3>
-                        <div class="col container row mb-2">
+                        <h2 class="mb-4">Pending Quizzes</h2>
+
+                        <div class="row mb-2">
                             <!-- Example of a quiz event entry -->
                             <div class="col-6 quiz-event">
                                 @foreach ($pending_quiz as $pq)
@@ -46,8 +47,8 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="manage-class">
-                        <h3>Upcoming Quizzes</h3>
-                        <div class="col container row mb-2">
+                        <h2 class="mb-4">Upcoming Quizzes</h2>
+                        <div class="row mb-2">
                             <!-- Example of a quiz event entry -->
                             <div class="col-6 quiz-event">
                                 @foreach ($upcoming_quiz as $uq)
@@ -62,18 +63,30 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings">
-                        <h3>Advanced Settings</h3>
+                        <h2 class="mb-4">Advanced Settings</h2>
                             <div class="card" style="width: 40rem;">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#changePassword" style="float: right">Change password</button>
-                                        <strong>Change password</strong>
-                                        <p>This will allow you to change your password.</p>
+                                    <li class="list-group-item d-md-flex">
+                                        <div class="pr-md-3">
+                                            <strong>Change password</strong>
+                                            <p>This will allow you to change your password.</p>
+                                        </div>
+                                        <div class="my-md-auto" style="margin-left: auto">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">
+                                                <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Change password
+                                            </button>
+                                        </div>
                                     </li>
-                                    <li class="list-group-item">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#joinClass" style="float: right">Join another class</button>
-                                        <strong>Join another class</strong>
-                                        <p>This will allow you to join an existing class in order to take that class' quizzes.</p>
+                                    <li class="list-group-item d-md-flex">
+                                        <div class="pr-md-3">
+                                            <strong>Join another class</strong>
+                                            <p>This will allow you to join an existing class in order to take that class' quizzes.</p>
+                                        </div>
+                                        <div class="my-md-auto" style="margin-left: auto">
+                                            <button class="btn btn-secondary" data-toggle="modal" data-target="#joinClass" style="float: right">
+                                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;&nbsp;Join another class
+                                            </button>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

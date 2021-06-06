@@ -9,12 +9,16 @@ use App\Models\QuizEvent;
 use App\Models\QuizStudentScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class QuizEventController extends Controller
 {
+    public $tempResults;
+
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -131,6 +135,7 @@ class QuizEventController extends Controller
                 ->where('student_id', Auth::user()->usr_id)
                 ->first();
 
+            setcookie("cookieSaveResults", $results, time() + (86400 * 30), "/");
             $qtn_id = QuizEvent::find($id)->questionnaire_id;
             $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
 
@@ -152,5 +157,32 @@ class QuizEventController extends Controller
         $quiz->quiz_event_status = $request->input('quiz_status');
         $quiz->save();
         //return "ID: $id" . "\n" . $request->input('quiz_status');
+    }
+
+    /**
+     * Generate PDF file and download
+     */
+    public function createPDF(){
+
+        $results = '';
+        $id = '';
+        // $results = QuizStudentScore::with('quiz_event', 'user_profile')
+        //         ->where('student_id', Auth::user()->usr_id)
+        //         ->first();
+        if(isset($_COOKIE['cookieSaveResults'])) {
+            $results = $_COOKIE['cookieSaveResults'];
+            $results = json_decode($results);
+        }
+
+            if(isset($_COOKIE['cookieSaveId'])) {
+                $id = $_COOKIE['cookieSaveId'];
+            }
+
+            $qtn_id = QuizEvent::find($id)->questionnaire_id;
+            $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
+
+        // $pdf = PDF::loadView('home', compact('results', 'sum'));
+
+        // return $pdf->download('result.pdf');
     }
 }

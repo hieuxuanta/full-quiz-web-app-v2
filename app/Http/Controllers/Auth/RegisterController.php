@@ -97,5 +97,4 @@ class RegisterController extends Controller
 
         return $out;
     }
-    //TODO: email verification
 }
