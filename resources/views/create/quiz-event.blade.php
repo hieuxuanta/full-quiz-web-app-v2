@@ -106,7 +106,7 @@
             </div>
             <hr>
         </div>
-        <div class="col-12">
+        <div class="col-12 mb-md-5">
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </div>
     </form>

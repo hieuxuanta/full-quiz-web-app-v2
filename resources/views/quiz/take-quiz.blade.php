@@ -34,8 +34,9 @@
                             <a class="nav-link disabled" style="font-size: 2rem; text-align: center">BQuiz</a>
                         </li>
                         {{-- Timer goes here --}}
-                        <li class="nav-item" style="height: 40px;">
-                            <p id="bq_timer_container" style="font-size: 1.5rem; text-align: center"></p>
+                        <li class="nav-item d-md-flex justify-content-md-center align-items-md-center mb-md-3" style="min-height: 40px;">
+                            <img id="bq_timer_icon" class="display_none" src="/assets/img/clock-running-stick-man.gif" alt="timer-img" style="width: 40px">
+                            <p id="bq_timer_container" class="text-md-center my-md-0 ml-md-1" style="font-size: 1.5rem;"></p>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" id="v-pills-welcome-tab" data-toggle="pill" href="#welcome"
@@ -255,6 +256,7 @@
                     <script>
                         // Selectors
                         const bqTimerContainer = document.querySelector('#bq_timer_container');
+                        const bqTimerIcon = document.querySelector('#bq_timer_icon');
                         let enableQuizBtn = document.querySelector('#enablequizbtn');
                         let submitBtn = document.querySelector('#submitBtn');
                         let okSubmitBtn = document.querySelector('#okSubmitBtn');
@@ -288,7 +290,10 @@
                             $("#v-pills-welcome-tab").addClass("disabled");
                             $('.nav-item a[href="#q1"]').tab('show');
 
-                            // Update countdown timer
+                            // Update countdown timer and icon
+                            setTimeout(() => {
+                                bqTimerIcon.classList.remove('display_none');
+                            }, 1000);
                             let handleCountdown = setInterval(function() {
                                 let minutes = Math.floor(total_time_in_second / 60);
                                 let seconds = total_time_in_second % 60;

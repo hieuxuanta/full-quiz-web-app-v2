@@ -24,7 +24,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-secondary">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" style="margin-left: 5.5rem" href="/">
                 <img src="/assets/img/ThCorporation-since1999-transparent.png" width="auto" height="35px" alt="binzigo-logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -32,8 +32,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav col-md-10">
+            <div class="collapse navbar-collapse d-md-flex" id="navbarSupportedContent">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
@@ -46,13 +46,13 @@
                 </ul>
                 <!-- Login here -->
                 @if(Auth::guest())
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ml-md-auto" style="margin-right: 6rem">
                         <li class="nav-item">
                             <a class="nav-link" href="/login">Login</a>
                         </li>
                     </ul>
                 @else
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ml-md-auto" style="margin-right: 6rem">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->usr }}
