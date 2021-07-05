@@ -19,7 +19,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->permissions == 0 || Auth::user()->permissions == 1) {
+        if (Auth::user()->permissions == 0) {
             $teachers = User::with('user_profile', 'classe')
                 ->where('permissions', 1)
                 ->get();
