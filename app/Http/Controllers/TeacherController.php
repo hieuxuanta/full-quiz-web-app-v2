@@ -23,7 +23,6 @@ class TeacherController extends Controller
             $teachers = User::with('user_profile', 'classe')
                 ->where('permissions', 1)
                 ->get();
-            // return $teachers;
             return view('manage.teachers', compact('teachers'));
         } else {
             abort(403, 'Forbidden area!');
