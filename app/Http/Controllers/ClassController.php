@@ -7,7 +7,6 @@ use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ClassController extends Controller
 {
@@ -22,22 +21,28 @@ class ClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        $i_id = Auth::user()->usr_id;//gets the id of the user
+    public function store(Request $request)
+    {
+        $i_id = Auth::user()->usr_id; //gets the id of the user
         $course_sec = $request->input('course_sec');
         $sub_id = $request->input('sub_id');
         $class_id = $request->input('class_id');
 
-//TODO: what if class_id is duplicate ???
-        Classe::create([
-            'class_id' => $class_id,
-            'instructor_id' => $i_id,
-            'course_sec' => $course_sec,
-            'subject_id' => $sub_id,
-            'class_active' => true
-        ]);
+//TODO: what if class_id, subject,..... is duplicate ???
+        if (Classe::where('class_id', $class_id)->first()) {
+            dd("This class id existed. Try another code, thanks!");
+        } else {
+            Classe::create([
+                'class_id' => $class_id,
+                'instructor_id' => $i_id,
+                'course_sec' => $course_sec,
+                'subject_id' => $sub_id,
+                'class_active' => true,
+            ]);
 
-        return redirect('/panel');
+            return redirect('/panel');
+        }
+
     }
 
     /**
@@ -46,12 +51,13 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
+    public function show($id)
+    {
         $quiz_events = DB::table('quiz_events')
-                        ->join('classes', 'quiz_events.class_id', '=', 'classes.class_id')
-                        ->join('subjects', 'subjects.subject_id', '=', 'classes.subject_id')
-                        ->where('classes.class_id', $id)
-                        ->get();
+            ->join('classes', 'quiz_events.class_id', '=', 'classes.class_id')
+            ->join('subjects', 'subjects.subject_id', '=', 'classes.subject_id')
+            ->where('classes.class_id', $id)
+            ->get();
 
         // $quiz_class = DB::table('classes')
         //             ->join('subjects', 'classes.subject_id', '=', 'subjects.subject_id')
@@ -60,15 +66,15 @@ class ClassController extends Controller
         //             ->first();
 
         $quiz_class = Classe::with('subject')
-                        ->where('instructor_id', Auth::user()->usr_id)
-                        ->where('class_id', $id)
-                        ->first();
+            ->where('instructor_id', Auth::user()->usr_id)
+            ->where('class_id', $id)
+            ->first();
 
         $students = DB::table('student_classes')
-                    ->join('user_profiles', 'student_classes.student_id', '=', 'user_profiles.usr_id')
-                    ->where('class_id', $id)
-                    ->orderBy('full_name', 'asc')
-                    ->get();
+            ->join('user_profiles', 'student_classes.student_id', '=', 'user_profiles.usr_id')
+            ->where('class_id', $id)
+            ->orderBy('full_name', 'asc')
+            ->get();
 
         //return $quiz_class;
         return view('manage.classes', compact('students', 'quiz_class', 'quiz_events'));
@@ -81,7 +87,8 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -91,7 +98,8 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         Classe::destroy($id);
     }
 }

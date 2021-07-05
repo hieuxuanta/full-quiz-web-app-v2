@@ -16,7 +16,7 @@
                             aria-controls="v-pills-class" aria-expanded="true">Class</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="v-pills-class" data-toggle="pill" href="#quiz-tab" role="tab"
+                        <a class="nav-link" id="v-pills-quizzes" data-toggle="pill" href="#quiz-tab" role="tab"
                             aria-controls="v-pills-quizzes" aria-expanded="true">Quizzes</a>
                     </li>
                     <li class="nav-item">
@@ -57,7 +57,9 @@
                                         </p>
                                     </div>
                                     {{-- TODO: view quizzes of class - DONE but check again --}}
-                                    {{-- <a class="card-footer text-white clearfix small z-1 text-center" href="">View quiz</a> --}}
+                                    <a id="shortcut_view_quizzes"
+                                        class="card-footer text-white clearfix small z-1 text-center" href="">View
+                                        quizzes</a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-12 pb-3">
@@ -69,7 +71,9 @@
                                         </p>
                                     </div>
                                     {{-- TODO: view student list of class - DONE but check again --}}
-                                    {{-- <a class="card-footer text-white clearfix small z-1 text-center" href="">View student list</a> --}}
+                                    <a id="shortcut_view_students"
+                                        class="card-footer text-white clearfix small z-1 text-center" href="">View students
+                                        list</a>
                                 </div>
                             </div>
                         </div>
@@ -284,6 +288,12 @@
             }
         });
 
+        // selectors
+        const vPillQuizzes = document.querySelector('#v-pills-quizzes');
+        const vPillStudents = document.querySelector('#v-pills-students');
+        const shortcutViewQuizzes = document.querySelector('#shortcut_view_quizzes');
+        const shortcutViewStudents = document.querySelector('#shortcut_view_students');
+
         $('#StudentProfileModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var sid = button.data('usrid')
@@ -301,24 +311,14 @@
             modal.find('#usrid').val(sid)
         });
 
-        /*$('#UpdateProfile').click(function (){
-            var modal = $(this)
-            var g = $('#g-name').val()
-            var f = $('#f-name').val()
-            var mi = $('#mi-name').val()
-            var ne = $('#ne-name').val()
-            var sid = $('#usrid').val()
-            var act = $('#act').val()
-
-            $.ajax({
-                url: '/student/update',
-                type: 'POST',
-                data: {g, f, mi, ne, sid, act},
-                success: function(result) {
-                    location.reload(true);
-                }
-            });
-        });*/
+        shortcutViewQuizzes.addEventListener('click', (event) => {
+            event.preventDefault();
+            vPillQuizzes.click();
+        });
+        shortcutViewStudents.addEventListener('click', (event) => {
+            event.preventDefault();
+            vPillStudents.click();
+        });
 
         function deleteClass(id) {
             $.ajax({

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -17,10 +18,14 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $subjects = Subject::with('classe')->get();
-        //return $subjects;
-        return view('manage.subjects', compact('subjects'));
+    public function index()
+    {
+        if (Auth::user()->permissions == 0 || Auth::user()->permissions == 1) {
+            $subjects = Subject::with('classe')->get();
+            return view('manage.subjects', compact('subjects'));
+        } else {
+            abort(403, 'Forbidden area!');
+        }
     }
 
     /**
@@ -29,7 +34,8 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $subject = new Subject;
         $subject->subject_code = $request->input('s_code');
         $subject->subject_desc = $request->input('s_des');
@@ -43,7 +49,8 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $subject = Subject::find($id);
         $subject->subject_code = $request->input('s_code');
         $subject->subject_desc = $request->input('s_des');
@@ -56,7 +63,8 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         Subject::destroy($id);
     }
 }

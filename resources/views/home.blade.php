@@ -101,9 +101,8 @@
                 </div>
                 <div class="col-lg-8 col-md-12">
                     <ul class="list-unstyled">
-                        <li><a href="">Home</a></li>
-                        {{-- <li><a href="">Report a bug</a></li>
-                        <li><a href="/aboutus">About us</a></li> --}}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/instruction">Instruction</a></li>
                     </ul>
                 </div>
             </div>
