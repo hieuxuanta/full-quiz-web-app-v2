@@ -28,9 +28,6 @@
                                 <td>
                                     {{ $t->user_profile->ext_name }}.&nbsp;
                                     {{ $t->user_profile->full_name }}
-                                    {{-- {{ $t->user_profile->given_name }}
-
-                            {{ $t->user_profile->middle_name}}. --}}
                                 </td>
                                 <td>{{ $t->usr }}</td>
                                 <td>{{ $t->classe->count() }}</td>
@@ -76,8 +73,6 @@
                             <div class="form-group">
                                 <label for="">Name</label>
                                 <div class="form">
-                                    {{-- <input name="n_given" id="n_given" type="text" placeholder="Given name" class="form-control mb-2">
-                                <input name="n_middle" id="n_middle" type="text" placeholder="Middle name" class="form-control mb-2"> --}}
                                     <input name="n_full" id="n_full" type="text" placeholder="Full name (required)"
                                         class="form-control mb-2">
                                     <input name="n_ext" id="n_ext" type="text" placeholder="Ext. - Mr / Ms"
@@ -170,13 +165,13 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" onclick="DeleteTeacher()">Delete Question</button>
+                        <button type="button" class="btn btn-danger" onclick="DeleteTeacher()">Delete Teacher</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{-- TODO: id of teacher Auto Increment not true, must be 2,3,.. but reality is 2,8,... --}}
+
     <script>
         $.ajaxSetup({
             headers: {

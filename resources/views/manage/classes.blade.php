@@ -56,7 +56,6 @@
                                             Quiz{{ $quiz_events->count() <= 1 ? '' : 'zes' }}
                                         </p>
                                     </div>
-                                    {{-- TODO: view quizzes of class - DONE but check again --}}
                                     <a id="shortcut_view_quizzes"
                                         class="card-footer text-white clearfix small z-1 text-center" href="">View
                                         quizzes</a>
@@ -70,7 +69,6 @@
                                             Student{{ $quiz_events->count() < 1 ? '' : 's' }}
                                         </p>
                                     </div>
-                                    {{-- TODO: view student list of class - DONE but check again --}}
                                     <a id="shortcut_view_students"
                                         class="card-footer text-white clearfix small z-1 text-center" href="">View students
                                         list</a>
@@ -125,9 +123,6 @@
                                         <td>
                                             {{ $s->ext_name }}.&nbsp;
                                             {{ $s->full_name }}
-                                            {{-- {{ $s->given_name }}
-
-                                    {{ $s->middle_name }} --}}
                                         </td>
                                         <td>
                                             {{ $s->usr_identification_numb }}
@@ -144,10 +139,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{-- TODO: add new student --}}
-                        {{-- <button class="btn btn-primary" data-toggle="modal" data-target="#AddNewStudentModal" disabled>
-                        Add new student
-                    </button> --}}
                     </div>
 
                     <div class="tab-pane fade" id="settings-tab" role="tabpanel" aria-labelledby="settings-tab">
@@ -218,7 +209,6 @@
         </div>
     </div>
 
-    {{-- TODO: Profile function is not working --}}
     <!-- Student Profile Modal -->
     <div class="modal fade" id="StudentProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -238,8 +228,6 @@
                             <div class="form-inline">
                                 <input type="text" class="form-control m-1" placeholder="Full Name" id="f-name"
                                     style="width:12rem" disabled>
-                                {{-- <input type="text" class="form-control m-1" placeholder="Given Name" id="g-name" style="width:12rem" disabled>
-                            <input type="text" class="form-control m-1" placeholder="M.I." id="mi-name" style="width:4rem" disabled> --}}
                                 <input type="text" class="form-control m-1" placeholder="Extension Name - Mr / Ms"
                                     id="ne-name" style="width:12rem" disabled>
                             </div>

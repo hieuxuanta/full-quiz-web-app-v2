@@ -28,7 +28,6 @@ class ClassController extends Controller
         $sub_id = $request->input('sub_id');
         $class_id = $request->input('class_id');
 
-//TODO: what if class_id, subject,..... is duplicate ???
         if (Classe::where('class_id', $class_id)->first()) {
             dd("This class id existed. Try another code, thanks!");
         } else {
@@ -59,12 +58,6 @@ class ClassController extends Controller
             ->where('classes.class_id', $id)
             ->get();
 
-        // $quiz_class = DB::table('classes')
-        //             ->join('subjects', 'classes.subject_id', '=', 'subjects.subject_id')
-        //             ->where('instructor_id', Auth::user()->usr_id)
-        //             ->where('classes.class_id', $id)
-        //             ->first();
-
         $quiz_class = Classe::with('subject')
             ->where('instructor_id', Auth::user()->usr_id)
             ->where('class_id', $id)
@@ -76,7 +69,6 @@ class ClassController extends Controller
             ->orderBy('full_name', 'asc')
             ->get();
 
-        //return $quiz_class;
         return view('manage.classes', compact('students', 'quiz_class', 'quiz_events'));
     }
 

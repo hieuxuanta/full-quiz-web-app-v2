@@ -9,21 +9,15 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
  */
+
 Auth::routes(); //Authentication routes, predefined by Laravel
 
 Route::get('/', [QuizController::class, 'Home']); //Returns the home page
 
-//TODO: about us, home, contact page
-Route::get('/instruction', function () {
+Route::get('/instruction', function () { //Returns the instruction page
     return view('instruction');
 });
-// TODO: Show user info
 
 Route::get('/panel', [QuizController::class, 'RedirectToAppropriatePanel']); //Redirect to appropriate panel
 
@@ -62,8 +56,3 @@ Route::resource('questionnaire', 'QuestionnaireController', ['only' => [ //Quest
 ]]);
 
 Route::post('join', 'QuizController@JoinClass');
-
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get('/', function () {
-//     return view('welcome');
-// });

@@ -22,8 +22,8 @@
                                 aria-expanded="true">Quiz Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ $subjects->count() == 0 ? 'disabled' : '' }} " id="v-pills-profile-tab"
-                                data-toggle="pill" href="#my-classes" role="tab" aria-controls="v-pills-profile"
+                            <a class="nav-link {{ $subjects->count() == 0 ? 'disabled' : '' }} " id="v-pills-class-tab"
+                                data-toggle="pill" href="#my-classes" role="tab" aria-controls="v-pills-class"
                                 aria-expanded="true">My Classes</a>
                         </li>
                         <li class="nav-item">
@@ -45,7 +45,7 @@
                                             <h1 class="align-left display-4">{{ $quiz_events->count() }}</h1>
                                             <p class="lead align-left">Quizzes on queue</p>
                                         </div>
-                                        {{-- <a class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a> --}}
+                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -54,7 +54,7 @@
                                             <h1 class="align-left display-4">{{ $finished_quiz_events->count() }}</h1>
                                             <p class="lead align-left">Quizzes finished</p>
                                         </div>
-                                        {{-- <a class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a> --}}
+                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -63,7 +63,7 @@
                                             <h1 class="align-left display-4">{{ $classes->count() }}</h1>
                                             <p class="lead align-left">Classes</p>
                                         </div>
-                                        {{-- <a class="card-footer text-white clearfix small z-1 align-left" href="">View classes</a> --}}
+                                        <a id="shortcut_view_classes" class="card-footer text-white clearfix small z-1 align-left" href="">View classes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -348,6 +348,23 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        // selectors
+        const vPillsClassTab = document.querySelector('#v-pills-class-tab');
+        const vPillsHomeTab = document.querySelector('#v-pills-home-tab');
+        const shortcutViewClasses = document.querySelector('#shortcut_view_classes');
+        const viewQuizBtns = document.querySelectorAll("a[title='view-quizz']");
+
+        shortcutViewClasses.addEventListener('click', (event) => {
+            event.preventDefault();
+            vPillsClassTab.click();
+        })
+        viewQuizBtns.forEach((vquizBtn, index) => {
+            vquizBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                vPillsHomeTab.click();
+            })
+        })
 
         function changePassword() {
             var oldPass = $('#pwd').val();

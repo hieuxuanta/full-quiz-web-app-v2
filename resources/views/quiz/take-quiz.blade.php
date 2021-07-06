@@ -73,9 +73,6 @@
                             <p>Name: <b>
                                     {{ $user_profile->ext_name }}.&nbsp;
                                     {{ $user_profile->full_name }}
-                                    {{-- {{ $user_profile->given_name }}
-
-                                {{ $user_profile->middle_name }} --}}
                                 </b></p>
                             <p>
                                 Identification number:
@@ -95,7 +92,7 @@
                             </button>
 
                         </div>
-                        {{-- TODO: redesign layout like frontend-only version --}}
+
                         @foreach ($quiz_content as $qc)
                             <div class="tab-pane fade" id="q{{ $questionNum }}" role="tabpanel"
                                 aria-labelledby="q{{ $questionNum }}">
@@ -132,56 +129,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="bz-container">
-                                        <h1>Online Quiz App</h1>
-                                        <form name="OnlineQuiz" id="onlineQuizFormId">
-                                            <div class="questionBlockClass">
-                                                <!-- test-layout -->
-                                                <div class="container_1" id="question_1">
-                                                    <label for="${indexQues - 1}" class="question">
-                                                        Question <label class="currentQues_lbl">1</label>: Javascript is
-                                                        _________ language.
-                                                    </label><br>
-                                                    <div class="answer">
-                                                        <label class="lbl-wrapper">
-                                                            <input name="${i}" type="radio" value="a">
-                                                            <div class="lblA">${myQuestions[i].answers.a}</div>
-                                                        </label>
-                                                        <label class="lbl-wrapper">
-                                                            <input name="${i}" type="radio" value="b">
-                                                            <div class="lblB">${myQuestions[i].answers.b}</div>
-                                                        </label>
-                                                        <label class="lbl-wrapper">
-                                                            <input name="${i}" type="radio" value="c">
-                                                            <div class="lblC">${myQuestions[i].answers.c}</div>
-                                                        </label>
-                                                        <label class="lbl-wrapper">
-                                                            <input name="${i}" type="radio" value="d">
-                                                            <div class="lblD">${myQuestions[i].answers.d}</div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <!-- end-test-layout -->
-                                            </div>
-                                            <div class="buttonBlockClass">
-                                                <!-- <button id="previousBtn" class="display_none">Previous Question</button> -->
-                                                <button id="previousBtn" class="display_none">
-                                                    <i class="fas fa-caret-left"></i>
-                                                </button>
-                                                <!-- <button id="nextBtn">Next Question</button> -->
-                                                <button id="nextBtn">
-                                                    <i class="fas fa-caret-right"></i>
-                                                </button>
-                                                <br>
-                                                <button id="submitBtn" class="display_none">Submit Quiz</button>
-                                                <button id="playAgainBtn" class="display_none">Play again</button>
-                                                <br>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <img class="bg-absolute" src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/11/css-gradient.png?fit=1200%2C600&ssl=1" alt=""
-                                        title="Go do quiz app boiz :)"> --}}
 
                                 @elseif($qc->question_type == 3)
                                     <h1>Question #{{ $questionNum }}</h1><span class="badge badge-info">True or
@@ -230,10 +177,6 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Bquiz
                                                             notification</h5>
-                                                        {{-- <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button> --}}
                                                     </div>
                                                     <div class="modal-body">
                                                         You still have time, are you sure to end the quiz now?
@@ -266,7 +209,6 @@
                         let quizEventId = document.querySelector('#qid');
 
                         let quiz_count = @php echo(count($quiz_content)) @endphp;
-                        //TODO: rechange into 2 minutes when done popup
                         let time_per_ques = 5; //minutes
                         let total_time = quiz_count * time_per_ques;
                         let total_time_in_second = total_time * 60;
@@ -284,7 +226,7 @@
                                 document.cookie = name + "=" + (value || "") + expires + "; path=/";
                             }
 
-                            //get your item from the localStorage
+                            //get item from the localStorage
                             var bid = localStorage.getItem('bid');
                             setCookie('cookieSaveId', bid, 7);
 
@@ -292,8 +234,7 @@
                             $(".disabled").removeClass("disabled");
                             $("#v-pills-welcome-tab").addClass("disabled");
                             $('.nav-item a[href="#q1"]').tab('show');
-                            //TODO: when submit, timer is paused
-                            //TODO: add new pause button, show modal pause quiz
+
                             // Update countdown timer and icon
                             setTimeout(() => {
                                 bqTimerIcon.classList.remove('display_none');
@@ -313,15 +254,11 @@
                                 if (total_time_in_second == 0) {
                                     clearInterval(handleCountdown);
                                     @php $questionNum = count($quiz_content) @endphp;
-                                    //TODO: can not set autoclick show modal when > 2 questions, so temporarily do the alert instead
-                                    //TODO: BUG ~ sometimes score true, sometimes score start like true answer those tho none answers ??
                                     alert("Time is over! Your result will be shown in a minute...");
                                     okSubmitBtn.click();
                                 }
                             }, 1000);
                         });
-
-                        //
 
                     </script>
                 </main>

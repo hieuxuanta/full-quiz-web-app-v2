@@ -29,7 +29,7 @@
                     </b>
                 </p>
             </div>
-            {{-- TODO: Teacher doesn't show here, only student --}}
+
             <script>
                 $.ajaxSetup({
                     headers: {
@@ -63,9 +63,7 @@
                         class="btn btn-primary btn-danger">End Quiz</button>
                 @endif
             </div>
-            {{-- TODO: Sort by Rank, Rating --}}
             <div class="col-lg-9 pt-4">
-
                 <h3>Quiz Results</h3>
                 <table class="table table-hover">
                     <thead>
@@ -84,9 +82,6 @@
                                 <td>
                                     {{ $result->user_profile->ext_name }}.&nbsp;
                                     {{ $result->user_profile->full_name }}
-                                    {{-- {{ $result->user_profile->given_name }}
-
-                            {{ $result->user_profile->middle_name }} --}}
                                 </td>
                                 <td>
 
