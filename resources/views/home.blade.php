@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <p class="text-center text-muted">
                                     Already have an account and just want to join a class?
-                                    <a href="">Click here</a> to join!
+                                    <a href="login">Click here</a> to join!
                                 </p>
                                 <hr>
                                 <form method="POST" action="{{ route('register') }}">
@@ -43,8 +43,6 @@
                                     <div class="form-group">
                                         <label for="">Name</label>
                                         <div class="form">
-                                            {{-- <input name="n_given" id="n_given" type="text" placeholder="Given name" class="form-control mb-2" value="{{ old('n_given') }}">
-                                            <input name="n_middle" id="n_middle" type="text" placeholder="Middle name" class="form-control mb-2" value="{{ old('n_middle') }}"> --}}
                                             <input name="n_full" id="n_full" type="text" placeholder="Full name (required)" class="form-control mb-2" value="{{ old('n_full') }}">
                                             <input name="n_ext" id="n_ext" type="text" placeholder="Mr / Ms" class="form-control mb-2" value="{{ old('n_ext') }}">
                                         </div>

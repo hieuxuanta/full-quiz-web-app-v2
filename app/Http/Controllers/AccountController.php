@@ -33,10 +33,8 @@ class AccountController extends Controller
 
             UserProfile::create([
                 'usr_id' => $usr->usr_id,
-                // 'given_name' => $request->input('n_given'),
                 'usr_identification_numb' => 0,
                 'full_name' => $request->input('n_full'),
-                // 'middle_name' => $request->input('n_middle'),
                 'ext_name' => $request->input('n_ext'),
             ]);
 

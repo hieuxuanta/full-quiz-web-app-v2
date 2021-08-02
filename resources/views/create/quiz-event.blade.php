@@ -63,7 +63,6 @@
                             <div class="col-3"><label>Choice 2</label><input name="mc[0][1]" type="text" class="form-control"></div>
                             <div class="col-3"><label>Choice 3</label><input name="mc[0][2]" type="text" class="form-control"></div>
                             <div class="col-3"><label>Choice 4</label><input name="mc[0][3]" type="text" class="form-control"></div>
-                            {{-- <div class="col-3"><label>Choice 5</label><input name="mc[0][4]" type="text" class="form-control"></div> --}}
                         </div>
                         <div class="row" style="padding-top: 10px;">
                             <div class="col-8">
@@ -73,7 +72,6 @@
                                     <option value="2">Choice 2</option>
                                     <option value="3">Choice 3</option>
                                     <option value="4">Choice 4</option>
-                                    {{-- <option value="4">Choice 5</option> --}}
                                 </select>
                             </div>
                         </div>

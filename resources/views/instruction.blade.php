@@ -29,10 +29,6 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 text-left mr-auto d-md-flex flex-column align-items-center">
-
-                        {{-- <p class="lead text-center" style="margin-top: 0rem; font-size: 2rem">
-                            Follow these rules to make the quiz easier !
-                        </p> --}}
                         <img src="/assets/img/manual-user-manual-logo.png" alt="" class="img-fluid" style="min-width: 100px; width: 300px;">
                     </div>
                 </div>

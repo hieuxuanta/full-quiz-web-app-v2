@@ -127,7 +127,7 @@ class TakeQuizController extends Controller
             $quiz = QuizEvent::find($id);
 
             $quiz_content = DB::table('questions')
-                ->select('question_id', 'question_name', 'choices', 'question_type')
+                ->select('question_id', 'question_name', 'question_type', 'points', 'choices')
                 ->join('questionnaires', 'questionnaires.questionnaire_id', '=', 'questions.questionnaire_id')
                 ->join('quiz_events', 'quiz_events.questionnaire_id', '=', 'questionnaires.questionnaire_id')
                 ->where('quiz_event_id', $id)

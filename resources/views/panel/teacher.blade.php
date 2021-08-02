@@ -169,11 +169,9 @@
                                 @endforeach
 
                             </div>
-                            {{-- <div class="col"> --}}
                             <button class="btn btn-primary" data-toggle="modal" data-target="#NewClassModal">
                                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add new
                             </button>
-                            {{-- </div> --}}
 
                         </div>
 

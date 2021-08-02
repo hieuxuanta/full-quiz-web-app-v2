@@ -102,7 +102,7 @@
                                     <h1>Question #{{ $questionNum }}</h1><span
                                         class="badge badge-info">Identification</span>
                                     <hr>
-                                    <p style="font-size: 1.5rem">{{ $qc->question_name }}</p>
+                                    <span style="font-size: 1.5rem"><span style="font-size: 1.5rem">{{ $qc->question_name }}</span>&nbsp;({{$qc->points}} points)</span>
                                     <div class="form-group">
                                         <textarea class="form-control" name="answer[{{ $questionNum }}]" rows="3"
                                             placeholder="Input answer here..."></textarea>
@@ -112,7 +112,7 @@
                                     <h1>Question #{{ $questionNum }}</h1><span class="badge badge-info">Multiple
                                         Choice</span>
                                     <hr>
-                                    <p style="font-size: 1.5rem">{{ $qc->question_name }}</p>
+                                    <span style="font-size: 1.5rem"><span style="font-size: 1.5rem">{{ $qc->question_name }}</span>&nbsp;({{$qc->points}} points)</span>
                                     @php
                                         $choices = explode(';', $qc->choices);
                                         $choicenum = 1;
@@ -134,7 +134,7 @@
                                     <h1>Question #{{ $questionNum }}</h1><span class="badge badge-info">True or
                                         False</span>
                                     <hr>
-                                    <p style="font-size: 1.5rem">{{ $qc->question_name }}</p>
+                                    <span style="font-size: 1.5rem"><span style="font-size: 1.5rem">{{ $qc->question_name }}</span>&nbsp;({{$qc->points}} points)</span>
                                     <div class="form-group">
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
