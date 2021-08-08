@@ -68,6 +68,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Iden. Number</th>
                             <th>Score</th>
@@ -79,6 +80,7 @@
                     <tbody>
                         @foreach ($results->classe->student_class as $result)
                             <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
                                 <td>
                                     {{ $result->user_profile->ext_name }}.&nbsp;
                                     {{ $result->user_profile->full_name }}

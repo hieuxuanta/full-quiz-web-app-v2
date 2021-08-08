@@ -45,7 +45,6 @@
                     </div>
                     <div class="form-group form-inline">
                         <label for="" class="pr-2">Points:</label><input type="number" class="form-control" min="1" value="1" name="points[]" style="max-width: 100px">
-
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary btn-block btn-sm ml-1" onclick="addQuestion()">Add Another Question</button>

@@ -81,26 +81,32 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Topic</th>
                                     <th>Subject</th>
-                                    <th>Status</th>
+                                    <th>Active</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($quiz_events as $qe)
                                     <tr id="quiz_entry{{ $qe->quiz_event_id }}">
+                                        <th scope="row">{{$loop->iteration}}</th>
                                         <td>
                                             <a href="/quiz/{{ $qe->quiz_event_id }}">{{ $qe->quiz_event_name }}</a>
                                         </td>
                                         <td>{{ $qe->subject_desc }}</td>
 
                                         @if ($qe->quiz_event_status == 0)
-                                            <td id="status{{ $qe->quiz_event_id }}">Disabled</td>
+                                            <td id="status{{ $qe->quiz_event_id }}"></td>
                                         @elseif($qe->quiz_event_status == 1)
-                                            <td id="status{{ $qe->quiz_event_id }}">Started</td>
+                                            <td id="status{{ $qe->quiz_event_id }}">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </td>
                                         @else
-                                            <td id="status{{ $qe->quiz_event_id }}">Ended</td>
+                                            <td id="status{{ $qe->quiz_event_id }}">
+                                                <i class="fa fa-ban" aria-hidden="true"></i>
+                                            </td>
                                         @endif
                                     </tr>
                                 @endforeach
@@ -112,6 +118,7 @@
                         <table class="table table-hover">
                             <thead class="thead">
                                 <tr>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Student Identification Number</th>
                                     <th></th>
@@ -120,6 +127,7 @@
                             <tbody>
                                 @foreach ($students as $s)
                                     <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
                                         <td>
                                             {{ $s->ext_name }}.&nbsp;
                                             {{ $s->full_name }}
@@ -281,6 +289,7 @@
         const vPillStudents = document.querySelector('#v-pills-students');
         const shortcutViewQuizzes = document.querySelector('#shortcut_view_quizzes');
         const shortcutViewStudents = document.querySelector('#shortcut_view_students');
+        let arrStudents = @json($students); // forlsalter-flitre
 
         $('#StudentProfileModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal

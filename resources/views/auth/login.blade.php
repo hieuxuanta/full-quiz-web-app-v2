@@ -25,7 +25,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
             <h5 class="text-center">Login to BQuiz</h5>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mx-auto card">
+        <div class="col-lg-4 col-md-6 col-sm-12 mx-auto card mb-md-5">
             <div class="card-body">
                 <form action="{{ route('login') }}" method="POST">
                     {{ csrf_field() }}

@@ -58,10 +58,16 @@ class RegisterController extends Controller
         // ]);
 
         return Validator::make($data, [
-            'usr' => 'required|string|max:255|unique:users',
+            'usr' => 'required|string|min:3|max:255|unique:users',
+            'n_full' => 'required|string|min:3|max:255',
             //'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:1|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'class_code' => 'exists:classes,class_id|string',
+        ],
+        [
+            'n_full.required' => 'The fullname is required.',
+            'n_full.min' => 'The fullname must be at least 3 characters.',
+            'usr.min' => 'The username must be at least 3 characters.',
         ]);
     }
 

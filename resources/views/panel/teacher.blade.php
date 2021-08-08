@@ -6,6 +6,26 @@
             padding-top: 2.5rem;
         }
 
+        #my-classes .card .card-body h3 {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #my-classes .card-body h6 {
+            margin: 0 0 50px;
+        }
+
+        #my-classes .card-body h4 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
     </style>
     <main>
         <div class="container-fluid">
@@ -35,7 +55,8 @@
 
                 <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
                     <div class="tab-content container" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard">
+                        <div class="tab-pane fade show active mb-md-5" id="dashboard" role="tabpanel"
+                            aria-labelledby="dashboard">
                             <h2 class="align-left">Dashboard</h2>
                             <hr>
                             <div class="row">
@@ -45,7 +66,8 @@
                                             <h1 class="align-left display-4">{{ $quiz_events->count() }}</h1>
                                             <p class="lead align-left">Quizzes on queue</p>
                                         </div>
-                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a>
+                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left"
+                                            href="">View quizzes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -54,7 +76,8 @@
                                             <h1 class="align-left display-4">{{ $finished_quiz_events->count() }}</h1>
                                             <p class="lead align-left">Quizzes finished</p>
                                         </div>
-                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left" href="">View quizzes</a>
+                                        <a title="view-quizz" class="card-footer text-white clearfix small z-1 align-left"
+                                            href="">View quizzes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -63,7 +86,9 @@
                                             <h1 class="align-left display-4">{{ $classes->count() }}</h1>
                                             <p class="lead align-left">Classes</p>
                                         </div>
-                                        <a id="shortcut_view_classes" class="card-footer text-white clearfix small z-1 align-left" href="">View classes</a>
+                                        <a id="shortcut_view_classes"
+                                            class="card-footer text-white clearfix small z-1 align-left" href="">View
+                                            classes</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 pb-3">
@@ -78,14 +103,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade {{ $classes->count() == 0 ? '' : '' }}" id="quiz-events" role="tabpanel"
-                            aria-labelledby="quiz-events">
+                        <div class="tab-pane fade {{ $classes->count() == 0 ? '' : '' }} mb-md-5" id="quiz-events"
+                            role="tabpanel" aria-labelledby="quiz-events">
                             <h2 class="text-left mb-4">Quiz Events</h2>
                             <div class="col-10">
                                 <h4>Current Quizzes</h4>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Topic</th>
                                             <th>Subject</th>
                                             <th>Class</th>
@@ -95,15 +121,19 @@
                                     <tbody>
                                         @foreach ($quiz_events as $qe)
                                             <tr id="quiz_entry{{ $qe->quiz_event_id }}">
+                                                <th scope="row">{{ $loop->iteration }}</th>
                                                 <td><a
                                                         href="/quiz/{{ $qe->quiz_event_id }}">{{ $qe->quiz_event_name }}</a>
                                                 </td>
                                                 <td>{{ $qe->classe->subject->subject_desc }}</td>
                                                 <td>{{ $qe->classe->course_sec }}</td>
+                                                {{-- icon for upcoming quiz events, otherwise no icon appears --}}
                                                 @if ($qe->quiz_event_status == 1)
                                                     <td>
                                                         <i class="fa fa-check" aria-hidden="true"></i>
                                                     </td>
+                                                @else
+                                                    <td></td>
                                                 @endif
                                             </tr>
                                         @endforeach
@@ -116,6 +146,7 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Topic</th>
                                                 <th>Subject</th>
                                                 <th>Class</th>
@@ -125,14 +156,16 @@
                                         <tbody>
                                             @foreach ($finished_quiz_events as $qe)
                                                 <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
                                                     <td><a
                                                             href="/quiz/{{ $qe->quiz_event_id }}">{{ $qe->quiz_event_name }}</a>
                                                     </td>
                                                     <td>{{ $qe->classe->subject->subject_desc }}</td>
                                                     <td>{{ $qe->classe->course_sec }}</td>
-                                                    @if ($qe->quiz_event_status == 1)
+                                                    {{-- icon for finished quiz events --}}
+                                                    @if ($qe->quiz_event_status == 2)
                                                         <td>
-                                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                                            <i class="fa fa-ban" aria-hidden="true"></i>
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -147,23 +180,24 @@
                             </a>
                         </div>
 
-                        <div class="tab-pane fade {{ $classes->count() == 0 ? '' : '' }}" id="my-classes" role="tabpanel"
-                            aria-labelledby="my-classes">
+                        <div class="tab-pane fade {{ $classes->count() == 0 ? '' : '' }} mb-md-5" id="my-classes"
+                            role="tabpanel" aria-labelledby="my-classes">
                             <!-- Manage Class -->
                             <!-- Fetch instructor's subjects -->
                             <h2 class="mb-4">My Classes</h2>
                             <div class="row">
                                 <!-- Class entry -->
                                 @foreach ($classes as $classe)
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card">
+                                    <div class="col-xl-3 col-sm-6" style="min-height: 230px; margin: 0 0 1.75rem;">
+                                        <div class="card" style="height: 100%">
                                             <div class="card-body">
                                                 <h4 class="card-title">{{ $classe->subject->subject_code }}:
                                                     {{ $classe->subject->subject_desc }}</h4>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{ $classe->course_sec }}</h6>
+                                                <h6 class="card-subtitle text-muted">{{ $classe->course_sec }}</h6>
                                                 <h3 class="text-center">{{ $classe->class_id }}</h3>
                                             </div>
-                                            <a href="/class/{{ $classe->class_id }}" class="card-footer text-center">View Class</a>
+                                            <a href="/class/{{ $classe->class_id }}" class="card-footer text-center">View
+                                                Class</a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -175,17 +209,18 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings">
+                        <div class="tab-pane fade mb-md-5" id="settings" role="tabpanel" aria-labelledby="settings">
                             <h2 class="mb-4">Advanced Settings</h2>
                             <div class="card" style="width: 40rem;">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item d-md-flex">
                                         <div class="pr-md-3">
                                             <strong>Change password</strong>
-                                        <p>This will allow you to change your password.</p>
+                                            <p>This will allow you to change your password.</p>
                                         </div>
                                         <div class="my-md-auto" style="margin-left: auto">
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">
+                                            <button class="btn btn-primary" data-toggle="modal"
+                                                data-target="#changePassword">
                                                 <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Change password
                                             </button>
                                         </div>
@@ -263,13 +298,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Class Name</label>
-                        <input name="course_sec" type="text" class="form-control">
+                        <label for="">Class Name</label>&nbsp;<small class="text-muted"><i>(Class name must be at least 3
+                                characters long)</i></small>
+                        <input name="course_sec" type="text" class="form-control" minlength="3" maxlength="50"
+                            placeholder="Type in class name..." autofocus>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Class Code</label>
                         <input name="class_id" type="text" class="form-control">
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="">Subject</label>
                         <select name="sub_id" id="" class="form-control">
@@ -282,7 +319,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="addClass_btn" type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
@@ -390,7 +427,6 @@
         function goToQuizPanel() {
             $('.nav-item a[href="#quiz-events"]').tab('show');
         }
-
     </script>
 
 @endsection

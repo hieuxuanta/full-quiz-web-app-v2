@@ -5,6 +5,10 @@
     main{
         padding-top: 2.5rem;
     }
+
+    .quiz-event {
+        margin: 0 0 1.75rem;
+    }
 </style>
 <main>
     <div class="container-fluid">
@@ -28,31 +32,34 @@
 
             <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
                 <div class="tab-content col" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="quiz-events">
+                    <div class="tab-pane fade show active mb-md-5" id="pending" role="tabpanel" aria-labelledby="quiz-events">
                         <h2 class="mb-4">Pending Quizzes</h2>
 
                         <div class="row mb-2">
                             <!-- Example of a quiz event entry -->
+                            @foreach ($pending_quiz as $pq)
                             <div class="col-6 quiz-event">
-                                @foreach ($pending_quiz as $pq)
-                                <div class="card mb-2">
+                                {{-- TODO: if done the quiz, gray out the course, remove btn Start, move to FINISHED QUIZ --}}
+
+                                <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $pq->quiz_event_name }}</h4>
                                         <h6 class="card-subtitle mb-2 text-muted">{{ $pq->subject_desc }}</h6>
                                         <a href="/take/{{ $pq->quiz_event_id }}" class="btn btn-outline-primary">Start</a>
                                     </div>
                                 </div>
-                                @endforeach
+
                             </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="manage-class">
+                    <div class="tab-pane fade mb-md-5" id="upcoming" role="tabpanel" aria-labelledby="manage-class">
                         <h2 class="mb-4">Upcoming Quizzes</h2>
                         <div class="row mb-2">
                             <!-- Example of a quiz event entry -->
                             <div class="col-6 quiz-event">
                                 @foreach ($upcoming_quiz as $uq)
-                                <div class="card mb-2">
+                                <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $uq->quiz_event_name }}</h4>
                                         <h6 class="card-subtitle mb-2 text-muted">{{ $uq->classe->subject->subject_desc }}</h6>
@@ -62,7 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings">
+                    <div class="tab-pane fade mb-md-5" id="settings" role="tabpanel" aria-labelledby="settings">
                         <h2 class="mb-4">Advanced Settings</h2>
                             <div class="card" style="width: 40rem;">
                                 <ul class="list-group list-group-flush">

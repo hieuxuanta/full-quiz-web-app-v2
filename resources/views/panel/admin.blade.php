@@ -5,6 +5,25 @@
         main {
             padding-top: 2.5rem;
         }
+        #classes .card .card-body h3 {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #classes .card-body h6 {
+            margin: 0 0 50px;
+        }
+
+        #classes .card-body h4 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
 
     </style>
     <main>
@@ -35,7 +54,7 @@
 
                 <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
                     <div class="tab-content container" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard">
+                        <div class="tab-pane fade show active mb-md-5" id="dashboard" role="tabpanel" aria-labelledby="dashboard">
                             <h2 class="align-left">Dashboard</h2>
                             <hr>
                             <div class="row">
@@ -80,13 +99,14 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="quiz-events" role="tabpanel" aria-labelledby="quiz-events">
+                        <div class="tab-pane fade mb-md-5" id="quiz-events" role="tabpanel" aria-labelledby="quiz-events">
                             <h2 class="text-left mb-4">Quiz Events</h2>
                             <div class="col-10">
                                 <h4>Current Quizzes</h4>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Topic</th>
                                             <th>Subject</th>
                                             <th>Class</th>
@@ -96,6 +116,7 @@
                                     <tbody>
                                         @foreach ($quiz_events as $qe)
                                             <tr id="quiz_entry{{ $qe->quiz_event_id }}">
+                                                <th scope="row">{{ $loop->iteration }}</th>
                                                 <td><a
                                                         href="/quiz/{{ $qe->quiz_event_id }}">{{ $qe->quiz_event_name }}</a>
                                                 </td>
@@ -105,6 +126,8 @@
                                                     <td>
                                                         <i class="fa fa-check" aria-hidden="true"></i>
                                                     </td>
+                                                @else
+                                                    <td></td>
                                                 @endif
                                             </tr>
                                         @endforeach
@@ -144,18 +167,19 @@
                             @endif
                         </div>
 
-                        <div class="tab-pane fade" id="classes" role="tabpanel" aria-labelledby="classes">
+                        <div class="tab-pane fade mb-md-5" id="classes" role="tabpanel" aria-labelledby="classes">
+                            {{-- TODO: UI class like teacher --}}
                             <!-- Manage Class -->
                             <h2 class="mb-4">Classes</h2>
                             <div class="row">
                                 <!-- Class entry -->
                                 @foreach ($classes as $classe)
-                                    <div class="col-xl-3 col-sm-6 mb-3">
-                                        <div class="card">
+                                    <div class="col-xl-3 col-sm-6" style="min-height: 230px; margin: 0 0 1.75rem;">
+                                        <div class="card" style="height: 100%">
                                             <div class="card-body">
                                                 <h4 class="card-title">{{ $classe->subject->subject_code }}:
                                                     {{ $classe->subject->subject_desc }}</h4>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{ $classe->course_sec }}</h6>
+                                                <h6 class="card-subtitle text-muted">{{ $classe->course_sec }}</h6>
                                                 <h3 class="text-center">{{ $classe->class_id }}</h3>
                                             </div>
                                         </div>
@@ -164,7 +188,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings">
+                        <div class="tab-pane fade mb-md-5" id="settings" role="tabpanel" aria-labelledby="settings">
                             <h2 class="mb-4">Advanced Settings</h2>
                             <div class="card" style="max-width: 40rem;">
                                 <ul class="list-group list-group-flush">

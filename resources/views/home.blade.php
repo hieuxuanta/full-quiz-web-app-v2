@@ -43,8 +43,11 @@
                                     <div class="form-group">
                                         <label for="">Name</label>
                                         <div class="form">
-                                            <input name="n_full" id="n_full" type="text" placeholder="Full name (required)" class="form-control mb-2" value="{{ old('n_full') }}">
-                                            <input name="n_ext" id="n_ext" type="text" placeholder="Mr / Ms" class="form-control mb-2" value="{{ old('n_ext') }}">
+                                            <input name="n_full" id="n_full" type="text" placeholder="Full name (required)" class="form-control mb-2 {{ $errors->has('n_full') ? 'is-invalid' : '' }}" value="{{ old('n_full') }}">
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('n_full') }}
+                                            </div>
+                                            <input name="n_ext" id="n_ext" type="text" placeholder="Mr / Ms" class="form-control my-2" value="{{ old('n_ext') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">

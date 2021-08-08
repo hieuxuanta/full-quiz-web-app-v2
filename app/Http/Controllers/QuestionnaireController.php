@@ -54,7 +54,7 @@ class QuestionnaireController extends Controller
         $q = Questionnaire::with('question')
                         ->where('questionnaire_id', $id)
                         ->first();
-        // return $q;
+
         return view('manage.questionnaires', compact('q'));
     }
 

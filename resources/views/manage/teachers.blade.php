@@ -24,7 +24,7 @@
                     <tbody>
                         @foreach ($teachers as $t)
                             <tr>
-                                <th scope="row">{{ $t->usr_id }}</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
                                     {{ $t->user_profile->ext_name }}.&nbsp;
                                     {{ $t->user_profile->full_name }}

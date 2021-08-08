@@ -25,6 +25,7 @@ class QuestionController extends Controller
         $question->question_type = $request->input('q_type');
         $question->choices = $request->input('choices');
         $question->answer = $request->input('q_ans');
+        $question->points = $request->input('q_point');
         $question->save();
     }
 
@@ -41,6 +42,7 @@ class QuestionController extends Controller
         $question->question_type = $request->input('q_type');
         $question->choices = $request->input('choices');
         $question->answer = $request->input('q_ans');
+        $question->points = $request->input('q_point');
         $question->save();
     }
 

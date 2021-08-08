@@ -24,9 +24,9 @@
                 <tbody>
                     @foreach($subjects as $s)
                     <tr>
-                        <th scope="row">{{ $s->subject_id }}</th>
-                        <td>{{$s->subject_code}}</td>
-                        <td>{{$s->subject_desc}}</td>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td class="lengthy-text" style="max-width: 150px;">{{$s->subject_code}}</td>
+                        <td class="lengthy-text" style="max-width: 250px;">{{$s->subject_desc}}</td>
                         <td>{{$s->classe->count()}}</td>
                         <td>
                             <button href="" class="btn btn-primary btn-sm" type="button" class="btn btn-primary btn-sm"
@@ -103,11 +103,11 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="">Subject Code</label>
-                            <input id="s_code_new" type="text" class="form-control" placeholder="">
+                            <input id="s_code_new" type="text" class="form-control" minlength="3" maxlength="50" placeholder="New subject code...">
                         </div>
                         <div class="form-group">
                             <label for="">Subject Description</label>
-                            <input id="s_desc_new" type="text" class="form-control" placeholder="">
+                            <input id="s_desc_new" type="text" class="form-control" minlength="3" maxlength="50" placeholder="New subject name...">
                         </div>
                     </div>
                 </form>

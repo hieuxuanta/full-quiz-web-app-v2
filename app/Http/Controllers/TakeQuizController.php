@@ -60,7 +60,7 @@ class TakeQuizController extends Controller
 
         foreach ($answers as $answer) {
             if ($answer->student_answer != "" || $answer->student_answer != null) {
-                if ($answer->student_answer == $answer->question->answer) {
+                if (strtoupper(trim($answer->student_answer)) == strtoupper(trim($answer->question->answer))) {
                     $score += $answer->question->points;
                 }
             } else {

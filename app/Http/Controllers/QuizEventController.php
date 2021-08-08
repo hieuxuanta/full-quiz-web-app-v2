@@ -28,8 +28,15 @@ class QuizEventController extends Controller
      */
     public function create()
     {
-        $classes = Classe::all();
-        return view('create.quiz-event', compact('classes'));
+        $id = Auth::user()->usr_id;
+        // $classes = Classe::all();
+        if ($id && Auth::check() && Auth::user()->permissions == 1) {
+            $classes = Classe::where('instructor_id', $id)
+                ->get();
+
+            return view('create.quiz-event', compact('classes'));
+        }
+        return abort(403, 'Only teachers can add quiz-events for their own classes!');
     }
 
     /**
@@ -162,24 +169,24 @@ class QuizEventController extends Controller
     /**
      * Generate PDF file and download
      */
-    public function createPDF(){
-
+    public function createPDF()
+    {
         $results = '';
         $id = '';
         // $results = QuizStudentScore::with('quiz_event', 'user_profile')
         //         ->where('student_id', Auth::user()->usr_id)
         //         ->first();
-        if(isset($_COOKIE['cookieSaveResults'])) {
+        if (isset($_COOKIE['cookieSaveResults'])) {
             $results = $_COOKIE['cookieSaveResults'];
             $results = json_decode($results);
         }
 
-            if(isset($_COOKIE['cookieSaveId'])) {
-                $id = $_COOKIE['cookieSaveId'];
-            }
+        if (isset($_COOKIE['cookieSaveId'])) {
+            $id = $_COOKIE['cookieSaveId'];
+        }
 
-            $qtn_id = QuizEvent::find($id)->questionnaire_id;
-            $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
+        $qtn_id = QuizEvent::find($id)->questionnaire_id;
+        $sum = Question::where('questionnaire_id', $qtn_id)->sum('points');
 
         // $pdf = PDF::loadView('home', compact('results', 'sum'));
 
